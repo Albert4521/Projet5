@@ -1,0 +1,13 @@
+.main{
+    border: solid black 2px;
+    border-radius: 2rem 2rem;
+}
+.navigation ul{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+.navigation ul li{
+    list-style: none;
+    margin-left: 1rem;
+}
