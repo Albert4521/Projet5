@@ -44,7 +44,7 @@ header{
 .main{
     position: relative;
     width: 90%;
-    height: 85rem;
+    height: 100rem;
     box-sizing: border-box;
     position: relative;
     display: flex;
@@ -60,7 +60,7 @@ header{
     border-radius: 2rem 2rem;
     box-shadow: gray 0 0 0.5rem;
     width: 45%;
-    height: 25rem;
+    height: 30rem;
     margin: 1rem;
     padding: 0.5rem;
 }
