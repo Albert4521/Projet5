@@ -33,6 +33,8 @@ function displayArticle(article){
 	cloneElt.getElementById("produit__identification").setAttribute('id',article._id);
 	cloneElt.getElementById("produit__photo").setAttribute('src',article.imageUrl);
 	cloneElt.getElementById("produit__photo").removeAttribute('id');
+	cloneElt.getElementById("produit__lien").setAttribute('href',`produit.html?id=${article._id}`);
+	cloneElt.getElementById("produit__lien").removeAttribute('id');
 
 	document.getElementById("main").appendChild(cloneElt);
 }

@@ -40,32 +40,32 @@ header{
     list-style: none;
     margin-left: 1rem;
 }
-
-.main{
-    position: relative;
-    width: 90%;
-    height: 100rem;
-    box-sizing: border-box;
-    position: relative;
-    display: flex;
-    flex-flow: column wrap;
-    padding: 1rem;
-    border: solid black 2px;
-    border-radius: 2rem 2rem;
+#photoProduit{
+    object-fit: cover;
+    width: 100%;
 }
 .produit{
     box-sizing: border-box;
-    background-color: white;
-    border: white 1px solid;
+    margin: 0;
+    border: solid 2px black;
     border-radius: 2rem 2rem;
-    box-shadow: gray 0 0 0.5rem;
-    width: 40%;
-    height: 30rem;
-    margin: 1rem;
-    padding: 0.5rem;
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    width: 90%;
+    height: 40rem;
 }
-.produit img{
-    width: 55%;
-    height: auto;
-    border-radius: 1rem 1rem;
+.produit__photo{
+    box-sizing: border-box;
+    position: relative;
+    width: 50%;
+    height: 40rem;
+    padding: 1rem;
+}
+.produit__infos{
+    box-sizing: border-box;
+    position: relative;
+    width: 50%;
+    height: 40rem;
+    padding: 1rem;
 }
