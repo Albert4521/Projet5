@@ -3,6 +3,7 @@ body{
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    background-color: #c8ad7f;
 }
 header{
     box-sizing: border-box;
@@ -16,6 +17,9 @@ header{
 .logo{
     box-sizing: border-box;
     height: 100%;
+}
+.logo img{
+    border-radius: 2rem 2rem;
 }
 .navigation{
     box-sizing: border-box;
@@ -47,25 +51,44 @@ header{
 .produit{
     box-sizing: border-box;
     margin: 0;
-    border: solid 2px black;
+    padding: 1rem;
+    background-color: #ac7f5e;
+    border: solid 2px #ac7f5e;
+    box-shadow: #ac7f5e 0 0 2rem;
     border-radius: 2rem 2rem;
     position: relative;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row nowrap;
     width: 90%;
-    height: 40rem;
+    height: auto;
 }
 .produit__photo{
     box-sizing: border-box;
     position: relative;
-    width: 50%;
-    height: 40rem;
+    text-align: center;
+    width: 55%;
+    height: 35rem;
     padding: 1rem;
+}
+#photoProduit{
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 1rem 1rem;
+    width: 75%;
+    height: auto;
+    max-height: 33rem;
+    min-height: 25rem;
+    max-width: 100%;
+    min-width: 100%;
+    margin : 0;
+    padding: 0;
+    object-fit: cover;
+    object-position: 50% 50%;
 }
 .produit__infos{
     box-sizing: border-box;
     position: relative;
-    width: 50%;
-    height: 40rem;
+    width: 40%;
+    height: auto;
     padding: 1rem;
 }
