@@ -92,3 +92,11 @@ header{
     height: auto;
     padding: 1rem;
 }
+#Ajouter{
+    box-sizing: border-box;
+    position: relative;
+    width: 15rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    margin: 1rem;
+}

@@ -4,10 +4,15 @@ const produitID = recupParametres.get('id');
 let prix = 0;
 let quantite = 0;
 let montant = 0;
+let nomProduitChoisi ='';
+let article ;
+
+document.getElementById('Ajouter').addEventListener('click',ajoutProduit);
 
 (async function (){
-	const article = await getArticle();
-	displayArticle(article);
+	article = await getArticle();
+	displayArticle();
+	nomProduitChoisi = await recupNomProduit();
 })()
 
 function getArticle(){
@@ -16,14 +21,14 @@ function getArticle(){
 		return reponse.json()
 	})
 	.then(function(donnees){
-		return(donnees)
+		return donnees
 	})
 	.catch(function(error){
 		alert(error)
 	})
 }
 
-function displayArticle(article){
+function displayArticle(){
 	const templateElt = document.getElementById("ficheProduit");
 	const cloneElt= document.importNode(templateElt.content,true);
     
@@ -51,3 +56,44 @@ function affichageMontant(){
 	document.getElementById('montantTotal').textContent = `Montant total ${montant} €`
 }
 document.querySelector('#body').addEventListener('change',affichageMontant);
+
+
+
+function recupNomProduit(){
+	const getNomProduit = new Promise(function(resolve,reject){
+		let nomProduit = document.getElementById('nomProduit').innerHTML;
+		if(typeof nomProduit !== 'undefined'){
+			resolve(nomProduit)
+		}else{
+			reject('Une erreur est survenue')
+		}
+	})
+	return getNomProduit.then(function(succes){
+		return succes
+	}).catch(function(){
+		console.log('erreur')
+	})	
+}
+
+
+function ajoutProduit(){
+	let produit = nomProduitChoisi;
+	let qtte = parseInt(quantite);
+	let articlePanier = [produit,qtte];
+	if(panier.length == 0){
+		console.log(panier);
+		panier.push(articlePanier);
+		console.log(panier);
+		console.log(JSON.parse(localStorage.getItem('panierOrinoco')));
+	}else{
+		const index = panier.findIndex(function(element){
+			return element[0] == produit
+		})
+		if(index != -1){
+			panier[index][1]+=qtte;
+		}else{
+			panier.push(articlePanier);	
+		}
+	}
+	localStorage.setItem('panierOrinoco',JSON.stringify(panier))		
+}
