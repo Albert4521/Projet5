@@ -6,5 +6,4 @@ let panier = localStorage.getItem('panierOrinoco');
 	}else{
 		panier = JSON.parse(panier);
 	}
-	console.log(panier);
 })()

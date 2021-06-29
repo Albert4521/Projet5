@@ -77,23 +77,23 @@ function recupNomProduit(){
 
 
 function ajoutProduit(){
+	let refProduit = produitID;
 	let produit = nomProduitChoisi;
 	let qtte = parseInt(quantite);
-	let articlePanier = [produit,qtte];
+	let prixProduit =parseFloat(prix);
+	let articlePanier = [refProduit,produit,qtte,prixProduit];
 	if(panier.length == 0){
-		console.log(panier);
 		panier.push(articlePanier);
-		console.log(panier);
-		console.log(JSON.parse(localStorage.getItem('panierOrinoco')));
 	}else{
 		const index = panier.findIndex(function(element){
-			return element[0] == produit
+			return element[1] == produit
 		})
 		if(index != -1){
-			panier[index][1]+=qtte;
+			panier[index][2]+=qtte;
 		}else{
 			panier.push(articlePanier);	
 		}
 	}
-	localStorage.setItem('panierOrinoco',JSON.stringify(panier))		
+	localStorage.setItem('panierOrinoco',JSON.stringify(panier))	
+	ajoutProduitPanier();	
 }
