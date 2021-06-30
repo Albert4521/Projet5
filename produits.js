@@ -82,18 +82,17 @@ function ajoutProduit(){
 	let qtte = parseInt(quantite);
 	let prixProduit =parseFloat(prix);
 	let articlePanier = [refProduit,produit,qtte,prixProduit];
-	if(panier.length == 0){
-		panier.push(articlePanier);
+	if(panierStorage.length == 0){
+		panierStorage.push(articlePanier);
 	}else{
-		const index = panier.findIndex(function(element){
+		const index = panierStorage.findIndex(function(element){
 			return element[1] == produit
 		})
 		if(index != -1){
-			panier[index][2]+=qtte;
+			panierStorage[index][2]+=qtte;
 		}else{
-			panier.push(articlePanier);	
+			panierStorage.push(articlePanier);	
 		}
 	}
-	localStorage.setItem('panierOrinoco',JSON.stringify(panier))	
-	ajoutProduitPanier();	
+	localStorage.setItem('panierOrinoco',JSON.stringify(panierStorage));
 }

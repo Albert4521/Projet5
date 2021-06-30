@@ -1,9 +1,9 @@
-let panier = localStorage.getItem('panierOrinoco');
+let panierStorage = localStorage.getItem('panierOrinoco');
 
 (function (){
-	if(panier == null){
-		panier = [];
+	if(panierStorage == null){
+		panierStorage = [];
 	}else{
-		panier = JSON.parse(panier);
+		panierStorage = JSON.parse(panierStorage);
 	}
 })()
