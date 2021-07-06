@@ -1,4 +1,5 @@
 let panierPersonnel = document.getElementById("panier");
+let tableauIdProduits = [];
 let supprimer = document.getElementById('supprimer');
 supprimer.addEventListener('click',supprimerArticles)
 function ajoutProduitsPanier(){
@@ -70,3 +71,29 @@ function supprimerArticles(){
 
 ajoutProduitsPanier();
 majMontantPanier()
+
+function produitsID(tableau){
+    tableau.length = 0;
+    for(article of panierStorage){
+        tableau.push(article[0]);
+    }
+    return tableau
+}
+document.getElementById('firstName');
+
+document.getElementById('formulaireContact').addEventListener('submit',function(evt){
+    evt.preventDefault();
+    const contact = {
+        firstName : document.getElementById('firstName').value,
+        lastName : document.getElementById('lastName').value,
+        address : document.getElementById('adress').value,
+        city : document.getElementById('city').value,
+        email : document.getElementById('email').value,
+        productID : produitsID(tableauIdProduits)
+    }
+    if(contact.firstName.trim().length == 0){
+        alert('Le champs Prénom est vide')
+        return
+    }
+    console.log(contact.productID);
+})
