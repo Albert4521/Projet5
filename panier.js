@@ -79,21 +79,47 @@ function produitsID(tableau){
     }
     return tableau
 }
-document.getElementById('firstName');
 
-document.getElementById('formulaireContact').addEventListener('submit',function(evt){
+document.getElementById('formulaireContact').addEventListener('submit',async function(evt){
+    /*On évite que le formulaire soit vidé une fois le bouton submit cliqué */
     evt.preventDefault();
-    const contact = {
-        firstName : document.getElementById('firstName').value,
-        lastName : document.getElementById('lastName').value,
-        address : document.getElementById('adress').value,
-        city : document.getElementById('city').value,
-        email : document.getElementById('email').value,
-        productID : produitsID(tableauIdProduits)
+    /*On créé notre objet contact reprenant les 5 données du formaulaire de contact ainsi que le tableau des ID des produits commandés*/
+    const envoi = {
+        contact : {
+            firstName : document.getElementById('firstName').value,
+            lastName : document.getElementById('lastName').value,
+            address : document.getElementById('adress').value,
+            city : document.getElementById('city').value,
+            email : document.getElementById('email').value,    
+        },
+        products : produitsID(tableauIdProduits)
     }
-    if(contact.firstName.trim().length == 0){
+    /*On vérifie les données saisies par l'utilisateur avant l'envoi de celles-ci */
+    if(envoi.contact.firstName.trim().length == 0){
         alert('Le champs Prénom est vide')
         return
     }
-    console.log(contact.productID);
+    if(envoi.contact.lastName.trim().length == 0){
+        alert('Le champs Prénom est vide')
+        return
+    }
+    if(envoi.contact.address.trim().length == 0){
+        alert('Le champs Prénom est vide')
+        return
+    }
+    if(envoi.contact.city.trim().length == 0){
+        alert('Le champs Prénom est vide')
+        return
+    }
+    /*On procède à l'envoi des données */
+    const reponseBrute = await fetch('http://localhost:3000/api/furniture/order',{
+        method : 'POST',
+        headers : {
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+        },
+        body : JSON.stringify(envoi)
+        });
+    const content = await reponseBrute.json(reponseBrute);
+    console.log(content);
 })
