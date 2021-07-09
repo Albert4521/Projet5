@@ -83,7 +83,7 @@ function produitsID(tableau){
 document.getElementById('formulaireContact').addEventListener('submit',async function(evt){
     /*On évite que le formulaire soit vidé une fois le bouton submit cliqué */
     evt.preventDefault();
-    /*On créé notre objet contact reprenant les 5 données du formaulaire de contact ainsi que le tableau des ID des produits commandés*/
+    /*On créé notre objet contact reprenant les 5 données du formulaire de contact ainsi que le tableau des ID des produits commandés*/
     const envoi = {
         contact : {
             firstName : document.getElementById('firstName').value,
@@ -115,11 +115,10 @@ document.getElementById('formulaireContact').addEventListener('submit',async fun
     const reponseBrute = await fetch('http://localhost:3000/api/furniture/order',{
         method : 'POST',
         headers : {
-            'Accept':'application/json',
             'Content-Type':'application/json'
         },
         body : JSON.stringify(envoi)
         });
     const content = await reponseBrute.json(reponseBrute);
-    console.log(content);
+    console.log(content.order_id);
 })
