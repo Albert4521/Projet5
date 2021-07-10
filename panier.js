@@ -1,7 +1,24 @@
 let panierPersonnel = document.getElementById("panier");
+let messagePanierVide = document.getElementById("messagePanierVide").textContent;
 let tableauIdProduits = [];
 let supprimer = document.getElementById('supprimer');
 supprimer.addEventListener('click',supprimerArticles)
+
+/*Affichage ou non du panier du client selon qu'il contienne ou non des articles */
+
+if(panierStorage.length == 0){
+    document.querySelector('h1').style.display = 'none';
+    while(panierPersonnel.rows.length>0){
+        panierPersonnel.deleteRow(0);
+    }
+    document.getElementById('montantPanier').innerText ='';
+    supprimer.style.display = 'none';
+    messagePanierVide.innerText ='Votre panier est vide ! Laissez-vous tenter par nos produits';
+}else{
+    ajoutProduitsPanier();
+    majMontantPanier()
+}
+
 function ajoutProduitsPanier(){
     for(article of panierStorage){
         let nouvelleLigne = panierPersonnel.insertRow(-1);
@@ -69,9 +86,6 @@ function supprimerArticles(){
     majMontantPanier();
 }
 
-ajoutProduitsPanier();
-majMontantPanier()
-
 function produitsID(tableau){
     tableau.length = 0;
     for(article of panierStorage){
@@ -80,6 +94,8 @@ function produitsID(tableau){
     return tableau
 }
 
+
+/*Envoi des données de la commande client */
 document.getElementById('formulaireContact').addEventListener('submit',async function(evt){
     /*On évite que le formulaire soit vidé une fois le bouton submit cliqué */
     evt.preventDefault();
