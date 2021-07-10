@@ -5,18 +5,21 @@ let supprimer = document.getElementById('supprimer');
 supprimer.addEventListener('click',supprimerArticles)
 
 /*Affichage ou non du panier du client selon qu'il contienne ou non des articles */
+affichagePagePanier();
 
-if(panierStorage.length == 0){
-    document.querySelector('h1').style.display = 'none';
-    while(panierPersonnel.rows.length>0){
-        panierPersonnel.deleteRow(0);
-    }
-    document.getElementById('montantPanier').innerText ='';
-    supprimer.style.display = 'none';
-    messagePanierVide.innerText ='Votre panier est vide ! Laissez-vous tenter par nos produits';
-}else{
-    ajoutProduitsPanier();
-    majMontantPanier()
+function affichagePagePanier(){
+    if(panierStorage.length == 0){
+        document.querySelector('h1').style.display = 'none';
+        while(panierPersonnel.rows.length>0){
+            panierPersonnel.deleteRow(0);
+        }
+        document.getElementById('montantPanier').innerText ='';
+        supprimer.style.display = 'none';
+        messagePanierVide.innerText ='Votre panier est vide ! Laissez-vous tenter par nos produits';
+    }else{
+        ajoutProduitsPanier();
+        majMontantPanier()
+    }    
 }
 
 function ajoutProduitsPanier(){
@@ -72,8 +75,8 @@ function supprimerArticles(){
     }
     //J'actualise l'espace mémoire LocalStorage d du navigateur alloué à mon panie
     localStorage.setItem('panierOrinoco',JSON.stringify(panierStorage));
-
-    //Je réactualise le tableau récapitulant l'ensemble de mon panier : 
+    affichagePagePanier();    
+    /*//Je réactualise le tableau récapitulant l'ensemble de mon panier : 
 
     //Au préalable je supprime toutes les lignes de mon tableau représentant l'ancien panier
     // sauf la ligne de titre
@@ -83,7 +86,7 @@ function supprimerArticles(){
     //Je créé un nouveau tableau représeant le nouveau panier
     ajoutProduitsPanier()
     //J'actualise l'affichage du montant total de mon panier
-    majMontantPanier();
+    majMontantPanier();*/
 }
 
 function produitsID(tableau){
