@@ -58,6 +58,10 @@ h1{
     position: relative;
     top:-5rem;
 }
+#messagePanierVide{
+    position: relative;
+    top:-5rem;
+}
 #panier{
     position: relative;
     top:-6rem;

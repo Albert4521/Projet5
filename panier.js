@@ -1,5 +1,5 @@
 let panierPersonnel = document.getElementById("panier");
-let messagePanierVide = document.getElementById("messagePanierVide").textContent;
+let messagePanierVide = document.getElementById("messagePanierVide");
 let tableauIdProduits = [];
 let supprimer = document.getElementById('supprimer');
 supprimer.addEventListener('click',supprimerArticles)
@@ -15,7 +15,8 @@ function affichagePagePanier(){
         }
         document.getElementById('montantPanier').innerText ='';
         supprimer.style.display = 'none';
-        messagePanierVide.innerText ='Votre panier est vide ! Laissez-vous tenter par nos produits';
+        messagePanierVide.textContent ='Votre panier est vide ! Laissez-vous tenter par nos produits';
+        messagePanierVide.style.display ='block';
     }else{
         ajoutProduitsPanier();
         majMontantPanier()
