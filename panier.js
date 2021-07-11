@@ -8,11 +8,14 @@ supprimer.addEventListener('click',supprimerArticles)
 affichagePagePanier();
 
 function affichagePagePanier(){
+    while(panierPersonnel.rows.length>1){
+        panierPersonnel.deleteRow(1);
+    }
     if(panierStorage.length == 0){
-        document.querySelector('h1').style.display = 'none';
         while(panierPersonnel.rows.length>0){
             panierPersonnel.deleteRow(0);
         }
+        document.querySelector('h1').style.display = 'none';
         document.getElementById('montantPanier').innerText ='';
         supprimer.style.display = 'none';
         messagePanierVide.textContent ='Votre panier est vide ! Laissez-vous tenter par nos produits';
@@ -77,17 +80,6 @@ function supprimerArticles(){
     //J'actualise l'espace mémoire LocalStorage d du navigateur alloué à mon panie
     localStorage.setItem('panierOrinoco',JSON.stringify(panierStorage));
     affichagePagePanier();    
-    /*//Je réactualise le tableau récapitulant l'ensemble de mon panier : 
-
-    //Au préalable je supprime toutes les lignes de mon tableau représentant l'ancien panier
-    // sauf la ligne de titre
-    while(panierPersonnel.rows.length>1){
-        panierPersonnel.deleteRow(1);
-    }
-    //Je créé un nouveau tableau représeant le nouveau panier
-    ajoutProduitsPanier()
-    //J'actualise l'affichage du montant total de mon panier
-    majMontantPanier();*/
 }
 
 function produitsID(tableau){

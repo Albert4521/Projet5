@@ -1,10 +1,10 @@
-#panier{
+/*#panier{
     border-collapse: collapse;;
 }
 #panier th,#panier td{
     border : solid 2px black;
     padding: 0.5rem;
-}
+}*/
 body{
     display: flex;
     flex-flow: column nowrap;
@@ -58,10 +58,15 @@ h1{
     position: relative;
     top:-5rem;
 }
+
 #messagePanierVide{
     position: relative;
     top:-5rem;
+    font-size: 2rem;
+    font-style: italic;
 }
+/*Mise en forme des éléments de la page Panier*/
+
 #panier{
     position: relative;
     top:-6rem;
@@ -75,8 +80,71 @@ h1{
     top:-6rem;
 }
 
+/*Mise en pforme du tableau récapitulant le panier*/
+table{
+    border-spacing: 0;
+    width: 39rem;
+    table-layout: fixed;
+}
+.colonneChoix{
+    width: 4rem;
+}
+.colonneRef{
+    width: 13rem;
+}
+.colonneProduit{
+    width: 8rem;
+}
+.colonnePrix{
+    width: 4rem;
+}
+.colonneQuantite{
+    width: 5rem;
+}
+.colonneMontant{
+    width: 5rem;
+}
+.panier{
+    border: solid #ccc 1px;
+    border-radius: 1.25rem;
+    box-shadow: 0 3px 3px #ccc;
+}
+.panier td, .panier th{
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding: 0.6rem;
+    text-align: left;
+}
+.panier th{
+    background-color: #dce9f9;
+    background-image: linear-gradient(top,#ebf3fc,#dce9f9);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+    border-top : none;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+.panier th:first-child, .panier th:last-child{
+    border: none;
+}
+.panier th:first-child{
+    border-radius: 1.25rem 0 0 0;
+}
+.panier th:last-child{
+    border-radius: 0 1.25rem 0 0;
+}
+.panier tr:last-child td:first-child{
+    border-radius: 0 0 0 1.25rem;
+}
+.panier tr:last-child td:last-child{
+    border-radius: 0 0 1.25rem 0;
+}
+
+
 /*Formulaire de contact*/
 #formulaireContact{
     position: relative;
     top:-5rem;
+    margin: 1rem;
+    border: 2px solid black;
+    padding : 1rem;
+    border-radius: 2rem 2rem;
 }

@@ -21,14 +21,22 @@
     </header>
     <h1>Votre panier</h1>
     <p id="messagePanierVide"></p>
-    <table id="panier">
+    <table id="panier" class="panier">
+        <colgroup>
+            <col class="colonneChoix">
+            <col class="colonneRef">
+            <col class="colonneProduit">
+            <col class="colonnePrix">
+            <col class="colonneQuantite">
+            <col class="colonneMontant">
+        </colgroup>
         <tr id="ligneTitre">
-            <td>Choix</td>
-            <td>Référence</td>
-            <td>Produit</td>
-            <td>Prix</td>
-            <td>Quantité</td>
-            <td>Montant</td>
+            <th>Choix</th>
+            <th>Référence</th>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Montant</th>
         </tr>
     </table>
     <p id="montantPanier"></p>
@@ -44,7 +52,7 @@
         <input type="text" id="city"><br>
         <label for="email">Adresse mail</label>
         <input type="mail" id="email"><br>
-        <input type="submit" id="afficherContact" value="Contact">
+        <input type="submit" id="validationCommande" value="Valider ma commande">
     </form>
 </body>
 </html>
