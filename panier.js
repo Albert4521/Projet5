@@ -132,5 +132,5 @@ document.getElementById('formulaireContact').addEventListener('submit',async fun
         body : JSON.stringify(envoi)
         });
     const content = await reponseBrute.json(reponseBrute);
-    console.log(content.order_id);
+    alert(`Votre commande a bien été prise en compte. Elle portle numéro : ${content['orderId']}`);
 })
