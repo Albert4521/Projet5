@@ -44,3 +44,10 @@ header{
     list-style: none;
     margin-left: 1rem;
 }
+.messagePrincipal{
+    font-size: 1.5rem;
+    text-align: center;
+}
+.infosCommande{
+    font-size: 1.2rem;
+}

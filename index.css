@@ -14,6 +14,10 @@ header{
     display: flex;
     flex-flow: column wrap;
 }
+h1{
+    font-size: 4rem;
+    font-style: italic;
+}
 .logo{
     box-sizing: border-box;
     height: 100%;

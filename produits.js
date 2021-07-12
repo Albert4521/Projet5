@@ -57,8 +57,6 @@ function affichageMontant(){
 }
 document.querySelector('#body').addEventListener('change',affichageMontant);
 
-
-
 function recupNomProduit(){
 	const getNomProduit = new Promise(function(resolve,reject){
 		let nomProduit = document.getElementById('nomProduit').innerHTML;
@@ -74,7 +72,6 @@ function recupNomProduit(){
 		console.log('erreur')
 	})	
 }
-
 
 function ajoutProduit(){
 	let refProduit = produitID;

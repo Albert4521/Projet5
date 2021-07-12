@@ -7,6 +7,7 @@ let formulaire = document.getElementById('formulaireContact');
 
 /*Affichage ou non du panier du client selon qu'il contienne ou non des articles */
 affichagePagePanier();
+document.getElementById('formulaireContact').addEventListener('submit',validationCommande);
 
 function affichagePagePanier(){
     while(panierPersonnel.rows.length>1){
@@ -61,14 +62,14 @@ function majMontantTotal(){
 function supprimerArticlesPanier(){
     let selection = document.getElementsByName('selectionProduits');
     let tableauSelection = []
-    //Je parcours tout le panier pour enrgistrer les articles cochés dans "tableauSlection"
+    //On récupère les articles cochés pour les stocker dans "tableauSlection"
     for(let i=0;i<selection.length;i++){
         if(selection[i].checked == true){
             tableauSelection.push(panierPersonnel.rows[i+1].cells[1].innerHTML);
         }
     }
-    //Tant qu'il y aura des articles dans "tableauSlection" je parcours toutes les lignes du panier pour retrouver
-    // et supprimer le premier article se trouvant dans mon "tableauSlection"
+    //Tant qu'il y aura des articles dans "tableauSlection" je parcours toutes les lignes du tableau 
+    //représentant le panier pour retrouveret supprimer le premier article se trouvant dans "tableauSlection"
     while(tableauSelection.length>0){
         for(let i=0 ; i<panierStorage.length ; i++){
             if(panierStorage[i][0] == tableauSelection[0]){
@@ -80,7 +81,7 @@ function supprimerArticlesPanier(){
             }
         }
     }
-    //J'actualise l'espace mémoire LocalStorage d du navigateur alloué à mon panie
+    //J'actualise l'espace mémoire LocalStorage du navigateur alloué à mon panier
     localStorage.setItem('panierOrinoco',JSON.stringify(panierStorage));
     affichagePagePanier();    
 }
@@ -93,9 +94,7 @@ function produitsID(tableau){
     return tableau
 }
 
-
-/*Envoi des données de la commande client */
-document.getElementById('formulaireContact').addEventListener('submit',async function(evt){
+async function validationCommande(evt){
     /*On évite que le formulaire soit vidé une fois le bouton submit cliqué */
     evt.preventDefault();
     /*On créé notre objet contact reprenant les 5 données du formulaire de contact ainsi que le tableau des ID des produits commandés*/
@@ -109,7 +108,7 @@ document.getElementById('formulaireContact').addEventListener('submit',async fun
         },
         products : produitsID(tableauIdProduits)
     }
-    const motifMail= /[a-z0-9\-_]+[a-z0-9\.\-_]*@[a-z0-9]\-_]{2,}\.[a-z\.\-_]+[a-z\-_]+/
+    const motifMail= /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     /*On vérifie les données saisies par l'utilisateur avant l'envoi de celles-ci */
     if(panierStorage.length == 0){
         alert('Votre panier est vide. Sélectionnez au minimum un produit.');
@@ -131,10 +130,10 @@ document.getElementById('formulaireContact').addEventListener('submit',async fun
         alert('Le champs Prénom est vide');
         return
     }
-    /*if(motifMail.test(envoi.contact.email.trim()) == false){
+    if(motifMail.test(envoi.contact.email.trim()) == false){
         alert('Adresse mail invalide');
         return
-    }*/
+    }
     /*On procède à l'envoi des données */
     const reponseBrute = await fetch('http://localhost:3000/api/furniture/order',{
         method : 'POST',
@@ -144,5 +143,9 @@ document.getElementById('formulaireContact').addEventListener('submit',async fun
         body : JSON.stringify(envoi)
         });
     const content = await reponseBrute.json(reponseBrute);
-    alert(`Votre commande a bien été prise en compte. Elle porte numéro : ${content['orderId']}`);
-})
+    infosClient =[];
+    infosClient.push(envoi.contact.firstName,envoi.contact.lastName,envoi.contact.email);
+    localStorage.setItem('clientOrinoco',JSON.stringify(infosClient));
+
+    window.location.href = `confirmation.html?id=${content['orderId']}`;
+}
