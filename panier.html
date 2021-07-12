@@ -20,8 +20,8 @@
         </nav>
     </header>
     <h1>Votre panier</h1>
-    <p id="messagePanierVide"></p>
-    <table id="panier" class="panier">
+    <p id="messagePanierVide" class="messagePanierVide"></p>
+    <table id="panier" class="tableauPanier">
         <colgroup>
             <col class="colonneChoix">
             <col class="colonneRef">
@@ -39,20 +39,30 @@
             <th>Montant</th>
         </tr>
     </table>
-    <p id="montantPanier"></p>
-    <button id="supprimer">Supprimer les articles sélectionnés</button>
-    <form action="" id="formulaireContact">
-        <label for="firstName">Prénom</label>
-        <input type="text" id="firstName"><br>
-        <label for="lastName">Nom</label>
-        <input type="text" id="lastName"><br>
-        <label for="adress">Adreesse postale</label>
-        <input type="text" id="adress"><br>
-        <label for="city">Ville</label>
-        <input type="text" id="city"><br>
-        <label for="email">Adresse mail</label>
-        <input type="mail" id="email"><br>
-        <input type="submit" id="validationCommande" value="Valider ma commande">
+    <p id="montantPanier" class="montantPanier"></p>
+    <button id="supprimer" class="boutonSupprimer">Supprimer les articles sélectionnés</button>
+    <form action="" id="formulaireContact" class="formulaire">
+        <div class="champFormulaire">
+            <label for="firstName">Prénom</label>
+            <input type="text" id="firstName">    
+        </div>
+        <div class="champFormulaire">
+            <label for="lastName">Nom</label>
+            <input type="text" id="lastName">    
+        </div>
+        <div class="champFormulaire">
+            <label for="adress">Adreesse postale</label>
+            <input type="text" id="adress">    
+        </div>
+        <div class="champFormulaire">
+            <label for="city">Ville</label>
+            <input type="text" id="city">    
+        </div>
+        <div class="champFormulaire">
+            <label for="email">Adresse mail</label>
+            <input type="mail" id="email">    
+        </div>
+        <input type="submit" id="validationCommande" class="boutonFormulaire" value="Commander">
     </form>
 </body>
 </html>

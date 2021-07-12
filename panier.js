@@ -2,7 +2,8 @@ let panierPersonnel = document.getElementById("panier");
 let messagePanierVide = document.getElementById("messagePanierVide");
 let tableauIdProduits = [];
 let supprimer = document.getElementById('supprimer');
-supprimer.addEventListener('click',supprimerArticles)
+supprimer.addEventListener('click',supprimerArticlesPanier);
+let formulaire = document.getElementById('formulaireContact');
 
 /*Affichage ou non du panier du client selon qu'il contienne ou non des articles */
 affichagePagePanier();
@@ -20,13 +21,15 @@ function affichagePagePanier(){
         supprimer.style.display = 'none';
         messagePanierVide.textContent ='Votre panier est vide ! Laissez-vous tenter par nos produits';
         messagePanierVide.style.display ='block';
+        messagePanierVide.style.top = '8rem';
+        formulaire.style.display = 'none';
     }else{
-        ajoutProduitsPanier();
-        majMontantPanier()
+        ajoutProduitTableau();
+        majMontantTotal()
     }    
 }
 
-function ajoutProduitsPanier(){
+function ajoutProduitTableau(){
     for(article of panierStorage){
         let nouvelleLigne = panierPersonnel.insertRow(-1);
         let celluleChoix = nouvelleLigne.insertCell(-1);
@@ -46,16 +49,16 @@ function ajoutProduitsPanier(){
         celluleMontant.innerText = parseFloat(cellulePrixUnitaire.innerText)*parseInt(celluleQuantite.innerText) + '€';
     }
 }
-function majMontantPanier(){
+function majMontantTotal(){
     let montant = 0;
     for(let i=1; i<panierPersonnel.rows.length;i++){
         let sousTotal = parseInt(panierPersonnel.getElementsByTagName('tr')[i].cells[5].innerText);
         montant += sousTotal;
     }
-    document.getElementById('montantPanier').innerText = 'Montant total de votre panier : ' + montant + ' €';
+    document.getElementById('montantPanier').innerText = 'TOTAL : ' + montant + ' €';
 }
 
-function supprimerArticles(){
+function supprimerArticlesPanier(){
     let selection = document.getElementsByName('selectionProduits');
     let tableauSelection = []
     //Je parcours tout le panier pour enrgistrer les articles cochés dans "tableauSlection"
@@ -106,23 +109,32 @@ document.getElementById('formulaireContact').addEventListener('submit',async fun
         },
         products : produitsID(tableauIdProduits)
     }
+    const motifMail= /[a-z0-9\-_]+[a-z0-9\.\-_]*@[a-z0-9]\-_]{2,}\.[a-z\.\-_]+[a-z\-_]+/
     /*On vérifie les données saisies par l'utilisateur avant l'envoi de celles-ci */
+    if(panierStorage.length == 0){
+        alert('Votre panier est vide. Sélectionnez au minimum un produit.');
+        return
+    }
     if(envoi.contact.firstName.trim().length == 0){
-        alert('Le champs Prénom est vide')
+        alert('Le champs Prénom est vide');
         return
     }
     if(envoi.contact.lastName.trim().length == 0){
-        alert('Le champs Prénom est vide')
+        alert('Le champs Prénom est vide');
         return
     }
     if(envoi.contact.address.trim().length == 0){
-        alert('Le champs Prénom est vide')
+        alert('Le champs Prénom est vide');
         return
     }
     if(envoi.contact.city.trim().length == 0){
-        alert('Le champs Prénom est vide')
+        alert('Le champs Prénom est vide');
         return
     }
+    /*if(motifMail.test(envoi.contact.email.trim()) == false){
+        alert('Adresse mail invalide');
+        return
+    }*/
     /*On procède à l'envoi des données */
     const reponseBrute = await fetch('http://localhost:3000/api/furniture/order',{
         method : 'POST',
@@ -132,5 +144,5 @@ document.getElementById('formulaireContact').addEventListener('submit',async fun
         body : JSON.stringify(envoi)
         });
     const content = await reponseBrute.json(reponseBrute);
-    alert(`Votre commande a bien été prise en compte. Elle portle numéro : ${content['orderId']}`);
+    alert(`Votre commande a bien été prise en compte. Elle porte numéro : ${content['orderId']}`);
 })

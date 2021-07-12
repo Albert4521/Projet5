@@ -69,8 +69,15 @@ header{
     margin: 1rem;
     padding: 0.5rem;
 }
+.produit:hover{
+    box-shadow: #ffd700 0 0 2rem;
+}
 .produit__description{
     text-align: left;
+}
+.produit__nom{
+    font-size: 1.5rem;
+    text-decoration: underline solid 3px black;
 }
 .produit img{
     min-width: 75%;;
@@ -78,4 +85,10 @@ header{
     height: auto;
     border-radius: 1rem 1rem;
     object-fit : contain;
+}
+.produit__lien{
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: black;
+    font-weight: bold;
 }
