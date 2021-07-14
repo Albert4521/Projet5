@@ -1,11 +1,11 @@
 (async function main(){
-	const articles = await getArticles();
+	const articles = await obtenirArticles();
 	for(article of articles){
-		displayArticle(article)
+		affichageArticles(article)
 	}
 })()
 
-function getArticles(){
+function obtenirArticles(){
 	return fetch('http://localhost:3000/api/furniture')
 	.then(function(reponse){
 		return reponse.json()
@@ -18,7 +18,7 @@ function getArticles(){
 	})
 }
 
-function displayArticle(article){
+function affichageArticles(article){
 	const templateElt = document.getElementById("modeleProduit");
 	const cloneElt= document.importNode(templateElt.content,true);
 	

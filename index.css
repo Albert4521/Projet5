@@ -78,9 +78,10 @@ h1{
 }
 .produit__description{
     text-align: left;
+    font-size: 1rem;
 }
 .produit__nom{
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     text-decoration: underline solid 3px black;
 }
 .produit img{

@@ -92,6 +92,9 @@ header{
     height: auto;
     padding: 1rem;
 }
+.produit__infos__prix{
+    font-size: 1.2rem;;
+}
 #Ajouter{
     box-sizing: border-box;
     position: relative;

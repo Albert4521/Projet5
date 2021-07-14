@@ -8,14 +8,15 @@ let nomProduitChoisi ='';
 let article ;
 
 document.getElementById('Ajouter').addEventListener('click',ajoutProduit);
+document.querySelector('#body').addEventListener('change',affichageMontant);
 
 (async function (){
-	article = await getArticle();
-	displayArticle();
-	nomProduitChoisi = await recupNomProduit();
+	article = await obtenirArticle();
+	affichageArticle();
+	nomProduitChoisi = article.name;
 })()
 
-function getArticle(){
+function obtenirArticle(){
 	return fetch(`http://localhost:3000/api/furniture/${produitID}`)
 	.then(function(reponse){
 		return reponse.json()
@@ -28,7 +29,7 @@ function getArticle(){
 	})
 }
 
-function displayArticle(){
+function affichageArticle(){
 	const templateElt = document.getElementById("ficheProduit");
 	const cloneElt= document.importNode(templateElt.content,true);
     
@@ -54,23 +55,6 @@ function affichageMontant(){
 	quantite = document.getElementById('quantiteProduit').value;
 	montant = prix*quantite;
 	document.getElementById('montantTotal').textContent = `Montant total ${montant} €`
-}
-document.querySelector('#body').addEventListener('change',affichageMontant);
-
-function recupNomProduit(){
-	const getNomProduit = new Promise(function(resolve,reject){
-		let nomProduit = document.getElementById('nomProduit').innerHTML;
-		if(typeof nomProduit !== 'undefined'){
-			resolve(nomProduit)
-		}else{
-			reject('Une erreur est survenue')
-		}
-	})
-	return getNomProduit.then(function(succes){
-		return succes
-	}).catch(function(){
-		console.log('erreur')
-	})	
 }
 
 function ajoutProduit(){
