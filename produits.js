@@ -63,6 +63,9 @@ function ajoutProduit(){
 	let qtte = parseInt(quantite);
 	let prixProduit =parseFloat(prix);
 	let articlePanier = [refProduit,produit,qtte,prixProduit];
+	if(qtte<1){
+		alert('Merci de saisir une quantité au moins égale à 1');
+	}
 	if(panierStorage.length == 0){
 		panierStorage.push(articlePanier);
 	}else{
