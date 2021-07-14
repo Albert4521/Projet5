@@ -119,6 +119,12 @@ h1{
     border-radius: 1.25rem;
     box-shadow: 0 3px 3px #ccc;
 }
+.tableauPanier input[type='checkbox']{
+    scale: 1.8;
+    position: relative;
+    left: 0.7rem;
+    background-color: red;
+}
 .tableauPanier td, .tableauPanier th{
     border-left: 1px solid #ccc;
     border-top: 1px solid #ccc;
