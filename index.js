@@ -1,4 +1,4 @@
-(async function main(){
+(async function (){
 	const articles = await obtenirArticles();
 	for(article of articles){
 		affichageArticles(article)
