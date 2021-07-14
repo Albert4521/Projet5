@@ -19,6 +19,7 @@ function affichagePagePanier(){
         }
         document.querySelector('h1').style.display = 'none';
         document.getElementById('montantPanier').innerText ='';
+        panierPersonnel.style.border = 0;
         supprimer.style.display = 'none';
         messagePanierVide.textContent ='Votre panier est vide ! Laissez-vous tenter par nos produits';
         messagePanierVide.style.display ='block';
