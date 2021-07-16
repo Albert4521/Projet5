@@ -52,7 +52,7 @@ header{
     font-size: 2rem;
 }
 .navigation ul li .accueil::before{
-    content: url('Maison.png');
+    content: url('/images/Maison.png');
     position: relative;
     top: 0.8rem;
     left: -0.2rem;

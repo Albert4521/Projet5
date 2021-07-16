@@ -8,7 +8,7 @@ const mailClient = infosClient[2];
 (function(){
     if(typeof(infosClient[0]) == 'undefined'){
         alert('Merci de votre visite. Vous allez être redirigé vers la page d\'accueil de notre site');
-        window.location.href = `index.html`;
+        window.location.href = `../index.html`;
     }else{
         document.getElementById('messageOrinoco').innerText = `Merci ${prenomClient} ${nomClient} pour votre commande.
         Votre commande porte la référence n°${refCommande}.

@@ -14,10 +14,6 @@ header{
     display: flex;
     flex-flow: column wrap;
 }
-h1{
-    font-size: 4rem;
-    font-style: italic;
-}
 .logo{
     box-sizing: border-box;
     height: 100%;
@@ -54,56 +50,21 @@ h1{
     font-size: 2rem;
 }
 .navigation ul li .panier::before{
-    content: url('Panier.png');
+    content: url('/images/Panier.png');
     position: relative;
     top: 0.8rem;
     left: -0.2rem;
 }
-.main{
+.navigation ul li .accueil::before{
+    content: url('/images/Maison.png');
     position: relative;
-    min-width: 75%;
-    max-width: 100%;
-    height: 100rem;
-    box-sizing: border-box;
-    position: relative;
-    display: flex;
-    flex-flow: column wrap;
-    padding: 1rem;
+    top: 0.8rem;
+    left: -0.2rem;
 }
-.produit{
-    box-sizing: border-box;
-    background-color: #ac7f5e;
-    border: white 1px solid;
-    border-radius: 2rem 2rem;
-    box-shadow: #353534 0 0 1rem;
-    width: 40%;
-    max-width: 35rem;
-    height: auto;
+.messagePrincipal{
+    font-size: 1.5rem;
     text-align: center;
-    margin: 1rem;
-    padding: 0.5rem;
 }
-.produit:hover{
-    box-shadow: #ffd700 0 0 2rem;
-}
-.produit__description{
-    text-align: left;
-    font-size: 1rem;
-}
-.produit__nom{
-    font-size: 1.6rem;
-    text-decoration: underline solid 3px black;
-}
-.produit img{
-    min-width: 75%;;
-    max-width: 95%;
-    height: auto;
-    border-radius: 1rem 1rem;
-    object-fit : contain;
-}
-.produit__lien{
-    text-decoration: none;
-    font-size: 1.3rem;
-    color: black;
-    font-weight: bold;
+.infosCommande{
+    font-size: 1.2rem;
 }

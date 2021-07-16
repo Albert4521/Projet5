@@ -110,25 +110,27 @@ async function validationCommande(evt){
         products : produitsID(tableauIdProduits)
     }
     const motifMail= /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const motifTexte = /^[A-Za-zëéèê]+$/
+    const motifAdresse = /([0-9])*([a-zA-Z])+/
     /*On vérifie les données saisies par l'utilisateur avant l'envoi de celles-ci */
     if(panierStorage.length == 0){
         alert('Votre panier est vide. Sélectionnez au minimum un produit.');
         return
     }
-    if(envoi.contact.firstName.trim().length == 0){
-        alert('Le champs Prénom est vide');
+    if(envoi.contact.firstName.trim().length == 0 || motifTexte.test(envoi.contact.firstName.trim()) == false){
+        alert('Le champs Prénom est invalide');
         return
     }
-    if(envoi.contact.lastName.trim().length == 0){
-        alert('Le champs Prénom est vide');
+    if(envoi.contact.lastName.trim().length == 0 || motifTexte.test(envoi.contact.lastName.trim()) == false){
+        alert('Le champs Nom est invalide');
         return
     }
-    if(envoi.contact.address.trim().length == 0){
-        alert('Le champs Prénom est vide');
+    if(envoi.contact.address.trim().length == 0 || motifAdresse.test(envoi.contact.address.trim()) == false){
+        alert('Le champs adresse est invalide');
         return
     }
-    if(envoi.contact.city.trim().length == 0){
-        alert('Le champs Prénom est vide');
+    if(envoi.contact.city.trim().length == 0 || motifTexte.test(envoi.contact.city.trim()) == false){
+        alert('Le champs ville est invalide');
         return
     }
     if(motifMail.test(envoi.contact.email.trim()) == false){
@@ -148,5 +150,5 @@ async function validationCommande(evt){
     infosClient.push(envoi.contact.firstName,envoi.contact.lastName,envoi.contact.email);
     localStorage.setItem('clientOrinoco',JSON.stringify(infosClient));
 
-    window.location.href = `confirmation.html?id=${content['orderId']}`;
+    window.location.href = `../pages/confirmation.html?id=${content['orderId']}`;
 }
